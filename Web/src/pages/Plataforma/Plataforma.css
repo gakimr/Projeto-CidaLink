@@ -1,0 +1,482 @@
+.plataforma {
+  width: 100%;
+}
+
+.plat-hero {
+  background: linear-gradient(135deg, var(--azullink), var(--azul));
+  color: white;
+  padding: 100px 8%;
+}
+
+.plat-hero .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.plat-etiqueta {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.plat-hero h1 {
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.plat-hero p {
+  max-width: 620px;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  opacity: 0.9;
+}
+
+.plat-hero-acoes {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.plat-btn,
+.plat-btn-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.plat-btn {
+  background: white;
+  color: var(--azullink);
+}
+
+.plat-btn:hover {
+  transform: translateY(-3px);
+}
+
+.plat-btn-secundario {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: white;
+}
+
+.plat-btn-secundario:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.plat-funcionalidades {
+  padding: 90px 8%;
+  background-color: #f8fafc;
+}
+
+.plat-funcionalidades .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.plat-section-header {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 50px;
+}
+
+.plat-section-header .plat-etiqueta {
+  color: var(--azullink);
+}
+
+.plat-section-header h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  color: #1e293b;
+  margin-bottom: 18px;
+}
+
+.plat-section-header p {
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.plat-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.plat-card {
+  background-color: white;
+  padding: 35px 28px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.plat-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.plat-card-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8f1ff;
+  color: var(--azullink);
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.plat-card h3 {
+  color: #1e293b;
+  font-size: 21px;
+  margin-bottom: 14px;
+}
+
+.plat-card p {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.plat-registro {
+  padding: 100px 8%;
+  background-color: white;
+}
+
+.plat-registro .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.plat-registro-texto .plat-etiqueta {
+  color: var(--azullink);
+}
+
+.plat-registro-texto h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  color: #1e293b;
+  margin-bottom: 22px;
+}
+
+.plat-registro-texto p {
+  color: #64748b;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.plat-registro-texto ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.plat-registro-texto li {
+  color: #475569;
+  margin-bottom: 14px;
+}
+
+.plat-registro-texto li::before {
+  content: "✓";
+  color: var(--azullink);
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.plat-registro-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.plat-registro-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
+}
+
+.plat-registro-card-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--azullink);
+  background: #e8f1ff;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.plat-registro-card h3 {
+  color: #1e293b;
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+.plat-registro-card > p {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.plat-campo-exemplo {
+  margin-bottom: 18px;
+}
+
+.plat-campo-exemplo span {
+  display: block;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.plat-campo-exemplo div {
+  padding: 13px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.plat-campo-exemplo .plat-campo-descricao {
+  min-height: 85px;
+}
+
+.plat-upload-exemplo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px;
+  color: var(--azullink);
+  border: 1px dashed var(--azullink);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.plat-registro-aviso {
+  margin-top: 18px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* Mapa interativo */
+.plat-mapa {
+  padding: 100px 8%;
+  background: white;
+}
+
+.plat-mapa .container,
+.plat-admin .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.plat-mapa-texto h2,
+.plat-admin-texto h2 {
+  font-size: clamp(30px, 4vw, 42px);
+  color: #1e293b;
+  margin-bottom: 22px;
+}
+
+.plat-mapa-texto p,
+.plat-admin-texto p {
+  color: #64748b;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.plat-mapa-texto .plat-etiqueta,
+.plat-admin-texto .plat-etiqueta {
+  color: var(--azullink);
+}
+
+.plat-admin-visual {
+  min-height: 300px;
+  border-radius: 18px;
+  background: #e8f1ff;
+  color: var(--azullink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-align: center;
+  padding: 30px;
+}
+
+.plat-admin-visual span {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.plat-admin-visual p {
+  color: #64748b;
+}
+
+.plat-mapa-visual {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plat-mapa-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.plat-mapa-visual img:hover {
+  transform: scale(1.03);
+}
+
+.plat-admin {
+  padding: 100px 8%;
+  background: #f8fafc;
+}
+
+/* Chamada final */
+.plat-cta {
+  padding: 90px 8%;
+  background: linear-gradient(135deg, #218c59, #36a66f);
+  color: white;
+  text-align: center;
+}
+
+.plat-cta .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.plat-cta .plat-etiqueta {
+  margin-bottom: 20px;
+}
+
+.plat-cta h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.plat-cta p {
+  font-size: 17px;
+  line-height: 1.7;
+  opacity: 0.95;
+  margin-bottom: 32px;
+}
+
+.plat-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 26px;
+  border-radius: 8px;
+  background: white;
+  color: #218c59;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.plat-cta-btn:hover {
+  transform: translateY(-3px);
+  background: #e9f7ef;
+}
+
+@media (max-width: 900px) {
+  .plat-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .plat-hero {
+    padding: 70px 6%;
+  }
+
+  .plat-hero-acoes {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .plat-hero-acoes a {
+    width: 100%;
+  }
+
+  .plat-funcionalidades,
+  .plat-registro,
+  .plat-mapa,
+  .plat-admin,
+  .plat-acompanhamento,
+  .plat-cta {
+    padding: 65px 6%;
+  }
+
+  .plat-cards,
+  .plat-registro .container,
+  .plat-mapa .container,
+  .plat-admin .container,
+  .plat-acompanhamento-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .plat-registro .container,
+  .plat-mapa .container,
+  .plat-admin .container {
+    gap: 35px;
+  }
+
+  .plat-registro-card {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .plat-hero {
+    padding: 75px 6%;
+  }
+
+  .plat-funcionalidades {
+    padding: 65px 6%;
+  }
+
+  .plat-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .plat-card {
+    padding: 28px 24px;
+  }
+}

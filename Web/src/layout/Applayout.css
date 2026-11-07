@@ -1,0 +1,29 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.app-envoltoria{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app-conteudo {
+  flex: 1;
+  padding: 40px 48px;
+}
+/*mudança da nilce*/
+@media (max-width: 700px) {
+  .app-conteudo {
+    padding: 24px 0;
+  }
+
+  .feed-topo,
+  .feed-filtros {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}

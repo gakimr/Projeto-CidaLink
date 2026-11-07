@@ -1,0 +1,155 @@
+/* Dúvidas frequentes */
+.sup-faq {
+  padding: 90px 8%;
+  background: #f8fafc;
+}
+
+.sup-faq .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sup-section-header {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.sup-section-header .sup-etiqueta {
+  color: var(--azullink);
+}
+
+.sup-section-header h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.sup-section-header p {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.sup-faq-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sup-faq-item {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.sup-faq-pergunta {
+  width: 100%;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border: none;
+  background: white;
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sup-faq-pergunta:hover {
+  color: var(--azullink);
+}
+
+.sup-faq-sinal {
+  font-size: 25px;
+  color: var(--azullink);
+}
+
+.sup-faq-resposta {
+  padding: 0 24px 22px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* Formulário de contato */
+.sup-contato {
+  padding: 90px 8%;
+  background: #ffffff;
+}
+
+.sup-contato .container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.sup-formulario {
+  background: #f8fafc;
+  padding: 35px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.sup-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.sup-campo label {
+  color: #334155;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.sup-campo input,
+.sup-campo textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  color: #334155;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.sup-campo input:focus,
+.sup-campo textarea:focus {
+  border-color: var(--azullink);
+}
+
+.sup-campo textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.sup-btn-enviar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #218c59;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    transform 0.3s;
+}
+
+.sup-btn-enviar:hover {
+  background: #176f45;
+  transform: translateY(-2px);
+}

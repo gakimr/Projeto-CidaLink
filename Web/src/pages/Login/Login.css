@@ -1,0 +1,159 @@
+.cardForm {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.cardlogin {
+  background: #fff;
+  width: 100%;
+  max-width: 26rem;
+  padding: 2.5rem 2rem;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+
+.cardlogin h2 {
+  color: var(--azul);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.cardlogin h3 {
+  color: var(--verde);
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.inputgp {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.inputgp label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  color: var(--texto-suave);
+}
+
+.inputgp input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.inputgp input:focus {
+  outline: none;
+  border-color: var(--azul);
+}
+
+.btnEntrar {
+  width: 100%;
+  background-color: var(--azul);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: var(--raio);
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btnEntrar:hover {
+  background-color: var(--azule);
+}
+
+.ptlogin {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--borda);
+}
+
+.ptlogin p {
+  color: var(--texto-suave);
+  margin-bottom: 0.5rem;
+}
+
+.rsenha {
+  color: var(--azul);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.rsenha:hover {
+  text-decoration: underline;
+}
+
+.btnCd {
+  display: inline-block;
+  background-color: var(--verde);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.btnCd:hover {
+  background-color: var(--verdeh);
+}
+
+.cardcadastro {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 30rem;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+
+.cardcadastro h2 {
+  color: var(--azul);
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.btnCadastro {
+  width: 100%;
+  background-color: var(--verde);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: var(--raio);
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btnCadastro:hover {
+  background-color: var(--verdeh);
+}
+
+.obrigatorio::after {
+  content: "*";
+  color: var(--vermelho);
+  margin-left: 0.2rem;
+}
+
+body.darkmode .cardForm,
+.cardlogin,
+.cardcadastro {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+body.darkmode .inputgp input {
+  background-color: rgba(238, 224, 224, 0.32);
+  color: white;
+}

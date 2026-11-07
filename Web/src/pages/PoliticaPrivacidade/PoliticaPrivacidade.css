@@ -1,0 +1,160 @@
+.privacidade {
+  background: #ffffff;
+  color: #334155;
+}
+
+.priv-hero {
+  padding: 85px 8%;
+  background: linear-gradient(135deg, #0755b8, #0876cf);
+  color: white;
+  text-align: center;
+}
+
+.priv-hero .container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.priv-etiqueta {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #dbeafe;
+}
+
+.priv-hero h1 {
+  margin-bottom: 18px;
+  font-size: clamp(32px, 5vw, 48px);
+  color: white;
+}
+
+.priv-hero p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #e0f2fe;
+}
+
+.priv-conteudo {
+  padding: 75px 8%;
+}
+
+.priv-conteudo .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.priv-introducao {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px;
+  margin-bottom: 45px;
+  background: #f0fdf4;
+  border-left: 4px solid #218c59;
+  border-radius: 10px;
+}
+
+.priv-introducao svg {
+  flex-shrink: 0;
+  color: #218c59;
+}
+
+.priv-introducao h2 {
+  margin-bottom: 10px;
+  color: #166534;
+  font-size: 22px;
+}
+
+.priv-introducao p {
+  line-height: 1.8;
+  color: #475569;
+}
+
+.priv-secao {
+  padding-bottom: 28px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.priv-secao h2 {
+  margin-bottom: 15px;
+  color: #0755b8;
+  font-size: 21px;
+}
+
+.priv-secao p {
+  margin-bottom: 12px;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.priv-secao ul {
+  padding-left: 25px;
+  color: #64748b;
+  line-height: 2;
+}
+
+.priv-secao li {
+  padding-left: 5px;
+}
+
+.priv-secao a {
+  color: #218c59;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.priv-secao a:hover {
+  text-decoration: underline;
+}
+
+.priv-aviso {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 22px 25px;
+  margin-top: 15px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  color: #166534;
+}
+
+.priv-aviso svg {
+  flex-shrink: 0;
+}
+
+.priv-aviso p {
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .priv-hero {
+    padding: 65px 5%;
+  }
+
+  .priv-conteudo {
+    padding: 50px 5%;
+  }
+
+  .priv-introducao {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .priv-introducao h2 {
+    font-size: 19px;
+  }
+
+  .priv-secao h2 {
+    font-size: 19px;
+  }
+
+  .priv-aviso {
+    align-items: flex-start;
+    padding: 18px;
+  }
+}
