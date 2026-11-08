@@ -1,7 +1,10 @@
+import { useAuth } from "@/context/AuthContext";
+import { mensagemDeErro } from "@/services/api";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -9,14 +12,70 @@ import {
   View,
 } from "react-native";
 
+function formatarCpf(valor: string) {
+  return valor
+    .replace(/\D/g, "")
+    .slice(0, 11)
+    .replace(/^(\d{3})(\d)/, "$1.$2")
+    .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+    .replace(/\.(\d{3})(\d)/, ".$1-$2");
+}
+
 export default function CadastroScreen() {
+  const [nome, setNome] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [erro, setErro] = useState("");
+  const [enviando, setEnviando] = useState(false);
+
   const router = useRouter();
+  const { cadastrar } = useAuth();
+
+  async function handleCadastrar() {
+    setErro("");
+
+    const cpfDigitos = cpf.replace(/\D/g, "");
+
+    if (!nome.trim() || !cpfDigitos || !email.trim() || !senha) {
+      setErro("Preencha todos os campos.");
+      return;
+    }
+    if (cpfDigitos.length !== 11) {
+      setErro("Informe um CPF com 11 dígitos.");
+      return;
+    }
+    if (senha !== confirmarSenha) {
+      setErro("As senhas não coincidem.");
+      return;
+    }
+
+    setEnviando(true);
+    try {
+      await cadastrar({
+        nome: nome.trim(),
+        cpf: cpfDigitos,
+        email: email.trim(),
+        password: senha,
+        tipo: "cidadao",
+      });
+      router.replace("/feed");
+    } catch (error) {
+      setErro(mensagemDeErro(error, "Erro ao cadastrar. Tente novamente."));
+    } finally {
+      setEnviando(false);
+    }
+  }
 
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
+      <ScrollView
+        contentContainerStyle={styles.content}
+        keyboardShouldPersistTaps="handled"
+      >
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => router.back()}
@@ -40,6 +99,8 @@ export default function CadastroScreen() {
             style={styles.input}
             placeholder="Seu nome completo"
             placeholderTextColor="#999"
+            value={nome}
+            onChangeText={setNome}
           />
         </View>
         <Text style={styles.label}>CPF</Text>
@@ -55,6 +116,9 @@ export default function CadastroScreen() {
             placeholder="000.000.000-00"
             placeholderTextColor="#999"
             keyboardType="numeric"
+            value={cpf}
+            onChangeText={(texto) => setCpf(formatarCpf(texto))}
+            maxLength={14}
           />
         </View>
         <Text style={styles.label}>E-mail</Text>
@@ -69,6 +133,11 @@ export default function CadastroScreen() {
             style={styles.input}
             placeholder="seuemail@exemplo.com"
             placeholderTextColor="#999"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+            value={email}
+            onChangeText={setEmail}
           />
         </View>
         <Text style={styles.label}>Senha</Text>
@@ -84,6 +153,8 @@ export default function CadastroScreen() {
             placeholder="Crie uma senha segura"
             placeholderTextColor="#999"
             secureTextEntry={!showPassword}
+            value={senha}
+            onChangeText={setSenha}
           />
           <Ionicons
             name={showPassword ? "eye-outline" : "eye-off-outline"}
@@ -102,9 +173,11 @@ export default function CadastroScreen() {
           />
           <TextInput
             style={styles.input}
-            placeholder="Crie uma senha segura"
+            placeholder="Repita a senha"
             placeholderTextColor="#999"
             secureTextEntry={!showConfirmPassword}
+            value={confirmarSenha}
+            onChangeText={setConfirmarSenha}
           />
           <Ionicons
             name={showConfirmPassword ? "eye-outline" : "eye-off-outline"}
@@ -113,10 +186,22 @@ export default function CadastroScreen() {
             onPress={() => setShowConfirmPassword(!showConfirmPassword)}
           />
         </View>
-        <TouchableOpacity style={styles.registerButton} onPress={() => {}}>
-          <Text style={styles.registerButtonText}>Cadastre-se</Text>
+
+        {erro ? <Text style={styles.erro}>{erro}</Text> : null}
+
+        <TouchableOpacity
+          style={[
+            styles.registerButton,
+            enviando && styles.registerButtonDesativado,
+          ]}
+          onPress={handleCadastrar}
+          disabled={enviando}
+        >
+          <Text style={styles.registerButtonText}>
+            {enviando ? "Cadastrando..." : "Cadastre-se"}
+          </Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -127,10 +212,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
   content: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: "center",
     paddingHorizontal: 24,
     paddingTop: 75,
+    paddingBottom: 24,
   },
   title: {
     fontSize: 20,
@@ -169,6 +255,12 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     fontSize: 14,
   },
+  erro: {
+    color: "#c62828",
+    fontSize: 13,
+    textAlign: "center",
+    marginBottom: 8,
+  },
   registerButton: {
     width: "100%",
     backgroundColor: "#2e7d32",
@@ -177,6 +269,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 8,
     marginBottom: 24,
+  },
+  registerButtonDesativado: {
+    opacity: 0.6,
   },
   registerButtonText: {
     color: "#ffffff",
