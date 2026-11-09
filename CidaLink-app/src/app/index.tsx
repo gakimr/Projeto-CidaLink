@@ -1,6 +1,8 @@
 import Footer from "@/components/Footer";
+import { useAuth } from "@/context/AuthContext";
+import { mensagemDeErro } from "@/services/api";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 import { useState } from "react";
 
 import {
@@ -13,8 +15,36 @@ import {
 } from "react-native";
 
 export default function LoginScreen() {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [erro, setErro] = useState("");
+  const [enviando, setEnviando] = useState(false);
+
   const router = useRouter();
+  const { usuario, carregando: restaurando, login } = useAuth();
+
+  async function handleEntrar() {
+    setErro("");
+
+    if (!email.trim() || !senha) {
+      setErro("Preencha e-mail e senha.");
+      return;
+    }
+
+    setEnviando(true);
+    try {
+      await login(email.trim(), senha);
+    } catch (error) {
+      setErro(mensagemDeErro(error, "Erro ao entrar. Tente novamente."));
+    } finally {
+      setEnviando(false);
+    }
+  }
+
+  if (restaurando) return null;
+  if (usuario) return <Redirect href="/feed" />;
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -23,7 +53,7 @@ export default function LoginScreen() {
           style={styles.logo}
         ></Image>
         <Text style={styles.title}>Que bom te ver de volta!</Text>
-        <Text style={styles.subtitle}>Acesse sua conta para cintinuar</Text>
+        <Text style={styles.subtitle}>Acesse sua conta para continuar</Text>
 
         <Text style={styles.label}>E-mail</Text>
         <View style={styles.inputContainer}>
@@ -35,10 +65,13 @@ export default function LoginScreen() {
           />
           <TextInput
             style={styles.Input}
-            placeholder="seu email@exemplo.com"
+            placeholder="seuemail@exemplo.com"
             placeholderTextColor={"#999"}
             keyboardType="email-address"
             autoCapitalize="none"
+            autoCorrect={false}
+            value={email}
+            onChangeText={setEmail}
           />
         </View>
 
@@ -55,6 +88,8 @@ export default function LoginScreen() {
             placeholder="sua senha segura"
             placeholderTextColor="#999"
             secureTextEntry={!showPassword}
+            value={senha}
+            onChangeText={setSenha}
           />
           <Ionicons
             name={showPassword ? "eye-outline" : "eye-off-outline"}
@@ -64,12 +99,16 @@ export default function LoginScreen() {
           />
         </View>
         <Text style={styles.recsenha}>Esqueceu a senha?</Text>
+
+        {erro ? <Text style={styles.erro}>{erro}</Text> : null}
+
         <TouchableOpacity
-          style={styles.loginButton}
-          onPress={() => router.push("/feed")}
+          style={[styles.loginButton, enviando && styles.loginButtonDesativado]}
+          onPress={handleEntrar}
+          disabled={enviando}
         >
           <Text style={{ color: "#fff", fontSize: 16, fontWeight: "bold" }}>
-            Entrar
+            {enviando ? "Entrando..." : "Entrar"}
           </Text>
         </TouchableOpacity>
         <View style={{ alignItems: "center" }}>
@@ -152,6 +191,12 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     marginBottom: 24,
   },
+  erro: {
+    color: "#c62828",
+    fontSize: 13,
+    textAlign: "center",
+    marginBottom: 12,
+  },
   loginButton: {
     width: "100%",
     backgroundColor: "#2e7d32",
@@ -159,6 +204,9 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     alignItems: "center",
     marginBottom: 20,
+  },
+  loginButtonDesativado: {
+    opacity: 0.6,
   },
   inputIcon: {
     marginRight: 8,

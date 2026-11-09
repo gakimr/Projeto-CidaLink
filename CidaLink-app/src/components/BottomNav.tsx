@@ -1,13 +1,30 @@
 import { View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter, usePathname } from "expo-router";
+import { useAuth } from "@/context/AuthContext";
+import { Alert } from "react-native";
 
 export default function BottomNav() {
   const router = useRouter();
   const pathname = usePathname();
+  const { logout } = useAuth();
 
   const activeColor = "#ffffff";
   const inactiveColor = "rgba(255, 255, 255, 0.6)";
+
+  function handleSair() {
+    Alert.alert("Sair", "Deseja sair da sua conta?", [
+      { text: "Cancelar", style: "cancel" },
+      {
+        text: "Sair",
+        style: "destructive",
+        onPress: async () => {
+          await logout();
+          router.replace("/");
+        },
+      },
+    ]);
+  }
 
   return (
     <View style={styles.bottomNav}>
@@ -35,7 +52,7 @@ export default function BottomNav() {
         name="log-out-outline"
         size={24}
         color={inactiveColor}
-        onPress={() => router.push("/")}
+        onPress={handleSair}
       />
     </View>
   );
