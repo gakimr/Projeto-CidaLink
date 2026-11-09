@@ -130,7 +130,7 @@ const ITENS_MENU = [
 export default function Sidebar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-
+  
   // administrador não cria ocorrências, só responde às dos cidadãos
   const itens =
     user?.tipo === "admin"
@@ -138,10 +138,10 @@ export default function Sidebar() {
       : ITENS_MENU;
 
   function handleSair() {
-    navigate("/");
-    logout();
-  }
-
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  window.location.assign("/");
+}
   return (
     <aside className="sidebar">
       <NavLink to="/app" end className="sidebar-logo">
