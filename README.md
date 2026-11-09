@@ -184,26 +184,6 @@ ADMIN_CODE=defina-o-codigo-de-administrador
 EXPO_PUBLIC_API_URL=http://localhost:3000
 ```
 
-## Endpoints da API
-
-Todas as rotas abaixo, exceto `/login` e `/cadastro`, exigem o cabeçalho `Authorization: Bearer <token>`.
-
-| Método | Rota | Descrição | Acesso |
-| --- | --- | --- | --- |
-| POST | `/login` | Entrar com e-mail e senha | Público |
-| POST | `/cadastro` | Criar conta (administrador exige `codigoAdmin`) | Público |
-| PUT | `/perfil` | Atualizar dados do perfil | Logado |
-| PUT | `/perfil/foto` | Enviar foto de perfil (campo `foto`) | Logado |
-| GET | `/postagens` | Listar ocorrências (filtro opcional `?status=`) | Logado |
-| GET | `/postagens/minhas` | Listar as ocorrências do usuário | Logado |
-| GET | `/postagens/:id` | Detalhes de uma ocorrência | Logado |
-| POST | `/postagens` | Criar ocorrência (multipart, campo `foto`) | Logado |
-| PUT | `/postagens/:id/status` | Alterar status e responder | Administrador |
-| DELETE | `/postagens/:id` | Excluir ocorrência | Dono ou administrador |
-| GET | `/bairros` | Listar bairros já cadastrados | Logado |
-
-Valores aceitos: categorias `buraco`, `iluminacao`, `lixo`, `saneamento`, `outro`; status `pendente`, `andamento`, `resolvida`.
-
 ## Primeiro acesso e conta de administrador
 
 - **Cidadão:** use a tela de cadastro, na web ou no app.
