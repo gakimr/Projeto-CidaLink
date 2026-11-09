@@ -201,7 +201,6 @@ EXPO_PUBLIC_API_URL=http://localhost:3000
 - [ ] Bate-papo
 - [ ] Apoio (votos) nas ocorrências
 - [ ] Editar uma ocorrência já registrada
-- [ ] Histórico de ações do administrador
 
 **Mobile**
 
