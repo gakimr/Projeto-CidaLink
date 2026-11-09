@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import api from "../../../services/api";
 import { CompleteCadastro } from "../../../utils/Cadastro";
 import "./Perfil.css";
@@ -29,6 +30,7 @@ function dadosIniciais(user) {
 
 export default function Perfil() {
   const { user, atualizarUser } = useAuth();
+  const navigate = useNavigate(); 
 
   const incompleto = !CompleteCadastro(user);
 
@@ -369,7 +371,18 @@ export default function Perfil() {
 
           <ul className="lista-ocorrencias">
             {ocorrencias.map((o) => (
-              <li key={o.id} className="lista-item">
+              <li
+                    key={o.id}
+                    className="lista-item lista-item-clicavel"
+                    role="link"
+                    tabIndex={0}
+                    onClick={() => navigate(`/app/ocorrencia/${o.id}`)}
+                    onKeyDown={(e) => {
+                      if (e.target === e.currentTarget && e.key === "Enter") {
+                        navigate(`/app/ocorrencia/${o.id}`);
+                      }
+                    }}
+                  >
                 <div className="lista-item-info">
                   <span className={`status-ponto status-${o.status}`}></span>
                   <div>
@@ -394,7 +407,10 @@ export default function Perfil() {
                       type="button"
                       className="btn-icone btn-icone-excluir"
                       title="Excluir"
-                      onClick={() => handleExcluir(o.id)}
+                     onClick={(e) => {
+                          e.stopPropagation();
+                          handleExcluir(o.id);
+                        }}
                     >
                       ✕
                     </button>

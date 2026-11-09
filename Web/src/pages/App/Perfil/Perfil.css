@@ -354,3 +354,17 @@
   font-size: 0.65rem;
   text-align: center;
 }
+
+.lista-item-clicavel {
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.lista-item-clicavel:hover {
+  border-color: var(--verde);
+}
+
+.lista-item-clicavel:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+}

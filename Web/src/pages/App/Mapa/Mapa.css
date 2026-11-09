@@ -202,3 +202,19 @@ body.darkmode .mapa-container {
   color: var(--texto-suave);
   margin-top: 4px;
 }
+.mapa-popup-link {
+  margin-top: 8px;
+  border: none;
+  background: var(--verdeh);
+  color: var(--cinzabranco);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mapa-popup-link:hover {
+  background: var(--verde);
+}

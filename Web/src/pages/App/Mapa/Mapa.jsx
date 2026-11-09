@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import api from "../../../services/api";
@@ -62,6 +63,7 @@ export default function Mapa() {
   const [postagens, setPostagens] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     let cancelado = false;
@@ -165,6 +167,13 @@ export default function Mapa() {
                   <small className="mapa-popup-autor">
                     Publicado por {p.autor.nome}
                   </small>
+                  <button
+                  type="button"
+                  className="mapa-popup-link"
+                  onClick={() => navigate(`/app/ocorrencia/${p.id}`)}
+                >
+                  Abrir publicação
+                </button>
                 </div>
               </Popup>
             </Marker>

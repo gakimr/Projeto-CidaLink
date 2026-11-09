@@ -17,6 +17,7 @@ import Plataforma from "./pages/Plataforma/Plataforma";
 import Suporte from "./pages/Suporte/Suporte";
 import TermosUso from "./pages/TermosUso/TermosUso";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade/PoliticaPrivacidade";
+import Ocorrencia from "./pages/App/Ocorrencia/Ocorrencia";
 import "./App.css";
 
 function App() {
@@ -57,6 +58,8 @@ function App() {
         <Route path="/app/mapa" element={<Mapa />} />
         <Route path="/app/criar-ocorrencia" element={<CriarOcorrencia />} />
         <Route path="/app/perfil" element={<Perfil />} />
+        <Route path="/app/ocorrencia/:id" element={<Ocorrencia />} />
+        
       </Route>
     </Routes>
   );

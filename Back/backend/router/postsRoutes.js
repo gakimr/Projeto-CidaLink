@@ -9,6 +9,7 @@ const {
 const { receberImagem } = require("../utils/upload.js");
 
 router.get("/postagens", verificarToken, postsController.Listar);
+router.get("/postagens/:id", verificarToken, postsController.Buscar);
 router.get("/postagens/minhas", verificarToken, postsController.ListarMinhas);
 router.post(
   "/postagens",

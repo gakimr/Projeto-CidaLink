@@ -131,7 +131,7 @@ export default function Sidebar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   
-  // administrador não cria ocorrências, só responde às dos cidadãos
+  // administrador não cria ocorrências, só responde as dos cidadãos
   const itens =
     user?.tipo === "admin"
       ? ITENS_MENU.filter((item) => item.id !== "criar")

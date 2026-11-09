@@ -208,4 +208,20 @@ async function Excluir(req, res) {
   }
 }
 
-module.exports = { Criar, Listar, ListarMinhas, AtualizarStatus, Excluir };
+async function Buscar(req, res) {
+  try {
+    const postagem = await postagensModel.GetById(req.params.id);
+    if (!postagem) {
+      return res.status(404).json({ message: "Error", data: "Postagem não encontrada." });
+    }
+    return res.status(200).json({
+      message: "Success",
+      data: { postagem: formatarPostagem(postagem) },
+    });
+  } catch (error) {
+    console.error("Erro no PostsController (Buscar):", error);
+    return res.status(500).json({ message: "Error", data: "Erro interno no servidor." });
+  }
+}
+
+module.exports = { Criar, Listar, ListarMinhas, AtualizarStatus, Excluir, Buscar };
