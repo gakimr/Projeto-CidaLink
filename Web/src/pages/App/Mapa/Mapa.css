@@ -1,0 +1,204 @@
+.app-titulo {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 32px;
+}
+
+.mapa-container {
+  position: relative;
+  z-index: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  height: 480px;
+}
+
+.mapa-leaflet {
+  height: 100%;
+  width: 100%;
+}
+
+.legenda {
+  background: var(--bg-elevado);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-top: 24px;
+}
+
+.legenda h4 {
+  font-family: "Poppins", sans-serif;
+  color: var(--azul);
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.legenda ul {
+  list-style: none;
+}
+
+.legenda li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+  color: var(--texto-suave);
+}
+
+.legenda li:last-child {
+  margin-bottom: 0;
+}
+
+.legenda-ponto {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legenda-pendente {
+  background: var(--vermelho);
+}
+.legenda-resolvido {
+  background: var(--verde);
+}
+.legenda-andamento {
+  background: var(--amarelo);
+}
+
+body.darkmode .mapa-leaflet {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+body.darkmode .mapa-leaflet .leaflet-tile-pane {
+  filter: brightness(0.8);
+}
+body.darkmode .mapa-container {
+  border: 1px solid rgba(79, 168, 224, 0.4);
+  box-shadow:
+    0 0 20px rgba(79, 168, 224, 0.35),
+    0 0 50px rgba(111, 209, 240, 0.15);
+}
+
+.mapa-aviso {
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.mapa-aviso-erro {
+  color: var(--vermelho);
+}
+
+/* marcador */
+.pin-mapa {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.pin-mapa-pendente {
+  background: var(--vermelho);
+}
+
+.pin-mapa-andamento {
+  background: var(--amarelo);
+}
+
+.pin-mapa-resolvida {
+  background: var(--verde);
+}
+
+/* popup (usa as variáveis, então acompanha o modo escuro) */
+.mapa-popup .leaflet-popup-content-wrapper {
+  background: var(--bg-elevado);
+  color: var(--texto);
+  border-radius: 14px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.mapa-popup .leaflet-popup-content {
+  margin: 0;
+}
+
+.mapa-popup .leaflet-popup-tip {
+  background: var(--bg-elevado);
+}
+
+.mapa-popup a.leaflet-popup-close-button {
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  line-height: 22px;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--bg-elevado);
+  color: var(--texto-suave);
+}
+
+.mapa-popup-foto {
+  display: block;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+}
+
+.mapa-popup-corpo {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mapa-popup-corpo strong {
+  font-size: 0.95rem;
+  color: var(--texto);
+}
+
+.mapa-popup-local {
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+}
+
+.mapa-popup .mapa-popup-corpo p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--texto);
+  overflow-wrap: anywhere;
+}
+
+.mapa-popup-corpo .status-tag {
+  align-self: flex-start;
+}
+
+.mapa-popup-resposta {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--verde);
+  background: var(--bg);
+  border-radius: 6px;
+}
+
+.mapa-popup-resposta strong {
+  font-size: 0.75rem;
+}
+
+.mapa-popup .mapa-popup-resposta p {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+}
+
+.mapa-popup-autor {
+  font-size: 0.72rem;
+  color: var(--texto-suave);
+  margin-top: 4px;
+}

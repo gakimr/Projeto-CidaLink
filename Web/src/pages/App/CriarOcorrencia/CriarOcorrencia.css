@@ -1,0 +1,191 @@
+.ocorrencia-page {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 60px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--sombra);
+}
+
+.form-card label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--azul);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-card select,
+.form-card textarea {
+  width: 100%;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+  color: var(--texto);
+  background: var(--bg-elevado);
+}
+
+.form-card textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+.form-linha {
+  display: flex;
+  gap: 14px;
+}
+
+.form-campo {
+  flex: 1;
+}
+
+.form-card input[type="text"] {
+  width: 100%;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+  color: var(--texto);
+  background: var(--bg-elevado);
+}
+
+.form-card input[type="file"] {
+  width: 100%;
+  border: 1px dashed var(--borda);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  background: var(--bg-elevado);
+  color: var(--texto-suave);
+}
+
+.seletor-mapa {
+  height: 280px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  margin-bottom: 16px;
+  cursor: crosshair;
+  z-index: 0;
+}
+
+.form-dica {
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+  margin-bottom: 10px;
+}
+
+.btn-local {
+  border: 1px solid var(--borda);
+  background: var(--bg-elevado);
+  color: var(--texto);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.btn-local:hover {
+  background: var(--verdeclaro);
+  color: var(--verdeh);
+}
+
+.btn-sugestao {
+  border: 1px solid var(--borda);
+  background: var(--bg-elevado);
+  color: var(--azul);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.btn-sugestao:hover {
+  background: var(--verdeclaro);
+  color: var(--verdeh);
+}
+
+.form-card .busca-endereco {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.form-card .busca-endereco input[type="text"] {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.form-card .busca-endereco .btn-local {
+  margin-bottom: 0;
+  padding: 11px 16px;
+}
+
+.resultados-busca {
+  list-style: none;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: var(--bg-elevado);
+}
+
+.resultados-busca button {
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--borda);
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.resultados-busca li:last-child button {
+  border-bottom: none;
+}
+
+.resultados-busca button:hover {
+  background: var(--verdeclaro);
+  color: var(--verdeh);
+}
+
+.form-status {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  margin: 0 0 14px;
+}
+
+.form-status-erro {
+  color: var(--vermelho);
+}
+
+.form-erro {
+  color: var(--vermelho);
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}

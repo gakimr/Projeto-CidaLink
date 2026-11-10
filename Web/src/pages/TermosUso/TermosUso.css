@@ -1,0 +1,161 @@
+.termos {
+  background: #ffffff;
+  color: #334155;
+}
+
+.termos-hero {
+  padding: 85px 8%;
+  background: linear-gradient(135deg, #0755b8, #0876cf);
+  color: white;
+  text-align: center;
+}
+
+.termos-hero .container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.termos-etiqueta {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #dbeafe;
+}
+
+.termos-hero h1 {
+  margin-bottom: 18px;
+  font-size: clamp(32px, 5vw, 48px);
+  color: white;
+}
+
+.termos-hero p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #e0f2fe;
+}
+
+.termos-conteudo {
+  padding: 75px 8%;
+}
+
+.termos-conteudo .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.termos-introducao {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px;
+  margin-bottom: 45px;
+  background: #eff6ff;
+  border-left: 4px solid var(--azullink);
+  border-radius: 10px;
+}
+
+.termos-introducao svg {
+  flex-shrink: 0;
+  color: var(--azullink);
+}
+
+.termos-introducao h2 {
+  margin-bottom: 10px;
+  color: #1e3a5f;
+  font-size: 22px;
+}
+
+.termos-introducao p {
+  line-height: 1.8;
+  color: #475569;
+}
+
+.termos-secao {
+  padding-bottom: 28px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.termos-secao h2 {
+  margin-bottom: 15px;
+  color: #0755b8;
+  font-size: 21px;
+}
+
+.termos-secao p {
+  margin-bottom: 12px;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.termos-secao ul {
+  padding-left: 25px;
+  color: #64748b;
+  line-height: 2;
+}
+
+.termos-secao li {
+  padding-left: 5px;
+}
+
+.termos-secao a {
+  color: var(--azullink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.termos-secao a:hover {
+  text-decoration: underline;
+}
+
+/* Aviso final */
+.termos-aviso {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 22px 25px;
+  margin-top: 15px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  color: #166534;
+}
+
+.termos-aviso svg {
+  flex-shrink: 0;
+}
+
+.termos-aviso p {
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .termos-hero {
+    padding: 65px 5%;
+  }
+
+  .termos-conteudo {
+    padding: 50px 5%;
+  }
+
+  .termos-introducao {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .termos-introducao h2 {
+    font-size: 19px;
+  }
+
+  .termos-secao h2 {
+    font-size: 19px;
+  }
+
+  .termos-aviso {
+    align-items: flex-start;
+    padding: 18px;
+  }
+}
