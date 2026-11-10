@@ -1,7 +1,7 @@
 .ocorrencia-detalhe {
-  max-width: 720px;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 8px 0 60px;
+  padding: 8px 0 40px;
 }
 
 .ocorrencia-voltar {
@@ -30,6 +30,32 @@
 
 .ocorrencia-aviso-erro {
   color: var(--vermelho);
+}
+
+/* duas colunas no computador, uma no celular */
+.ocorrencia-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.ocorrencia-grade-unica {
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
+}
+
+.ocorrencia-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .ocorrencia-grade {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .ocorrencia-card {
@@ -73,7 +99,7 @@
 .ocorrencia-foto {
   display: block;
   width: 100%;
-  max-height: 460px;
+  max-height: 360px;
   object-fit: cover;
 }
 
@@ -124,11 +150,140 @@
   margin-top: 4px;
   font-size: 0.9rem;
   color: var(--texto);
+  white-space: pre-line;
   overflow-wrap: anywhere;
+}
+
+/* mini mapa */
+.ocorrencia-mapa-card {
+  background: var(--bg-elevado);
+  border: 1px solid var(--borda);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  overflow: hidden;
 }
 
 .ocorrencia-mapa {
   height: 240px;
-  border-top: 1px solid var(--borda);
   z-index: 0;
+}
+
+/* marcador do mini mapa (repetido aqui pra funcionar mesmo
+   quando a página é aberta direto, sem passar pelo Mapa.css) */
+.pin-mapa {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.pin-mapa-pendente {
+  background: var(--vermelho);
+}
+
+.pin-mapa-andamento {
+  background: var(--amarelo);
+}
+
+.pin-mapa-resolvida {
+  background: var(--verde);
+}
+
+/* painel do administrador */
+.ocorrencia-admin {
+  background: var(--bg-elevado);
+  border: 1px solid var(--borda);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ocorrencia-admin h2 {
+  font-size: 1.05rem;
+}
+
+.ocorrencia-admin label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.status-opcoes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.status-opcao {
+  border: 1px solid var(--borda);
+  background: var(--bg);
+  color: var(--texto);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.status-opcao:hover {
+  border-color: var(--texto-suave);
+}
+
+.status-opcao-ativa-pendente {
+  background: var(--vermelho);
+  border-color: var(--vermelho);
+  color: #fff;
+}
+
+.status-opcao-ativa-andamento {
+  background: var(--amarelo);
+  border-color: var(--amarelo);
+  color: #2b2b2b;
+}
+
+.status-opcao-ativa-resolvida {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #fff;
+}
+
+.ocorrencia-admin textarea {
+  width: 100%;
+  min-height: 110px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: var(--bg);
+  color: var(--texto);
+  resize: vertical;
+}
+
+.ocorrencia-admin-contador {
+  align-self: flex-end;
+  margin-top: -6px;
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+}
+
+.ocorrencia-admin .btn {
+  align-self: flex-start;
+}
+
+.ocorrencia-admin-msg {
+  font-size: 0.85rem;
+}
+
+.ocorrencia-admin-ok {
+  color: var(--verde);
+}
+
+.ocorrencia-admin-erro {
+  color: var(--vermelho);
 }
