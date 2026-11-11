@@ -118,7 +118,7 @@ const ITENS_MENU = [
     id: "notificacoes",
     rotulo: "Notificações",
     rota: "/app/notificacoes",
-    badge: 9,
+
   },
   { id: "inicio", rotulo: "Página Inicial", rota: "/app" },
   { id: "criar", rotulo: "Criar Ocorrência", rota: "/app/criar-ocorrencia" },
@@ -163,7 +163,6 @@ export default function Sidebar() {
               {ICONES[item.id]}
               <span>{item.rotulo}</span>
             </span>
-            {item.badge && <span className="sidebar-badge">{item.badge}</span>}
           </NavLink>
         ))}
 

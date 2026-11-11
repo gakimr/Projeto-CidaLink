@@ -17,6 +17,8 @@ import Plataforma from "./pages/Plataforma/Plataforma";
 import Suporte from "./pages/Suporte/Suporte";
 import TermosUso from "./pages/TermosUso/TermosUso";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade/PoliticaPrivacidade";
+import Notificacoes from "./pages/App/notificacoes/Notificacoes";
+import GerenciarOcorrencia from "./pages/App/GerenciarOcorrencia/GerenciarOcorrencia";
 import "./App.css";
 
 function App() {
@@ -57,6 +59,8 @@ function App() {
         <Route path="/app/mapa" element={<Mapa />} />
         <Route path="/app/criar-ocorrencia" element={<CriarOcorrencia />} />
         <Route path="/app/perfil" element={<Perfil />} />
+        <Route path="/app/notificacoes" element={<Notificacoes />} />
+        <Route path="/app/ocorrencia/:id" element={<GerenciarOcorrencia />} />
       </Route>
     </Routes>
   );
