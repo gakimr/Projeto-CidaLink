@@ -19,6 +19,7 @@ import TermosUso from "./pages/TermosUso/TermosUso";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade/PoliticaPrivacidade";
 import Notificacoes from "./pages/App/notificacoes/Notificacoes";
 import GerenciarOcorrencia from "./pages/App/GerenciarOcorrencia/GerenciarOcorrencia";
+import RecuperarSenha from "./pages/Login/RecuperarSenha";
 import Chat from "./pages/App/Chat/Chat";
 import "./App.css";
 
@@ -43,10 +44,8 @@ function App() {
         <Route path="/plataforma" element={<Plataforma />} />
         <Route path="/suporte" element={<Suporte />} />
         <Route path="/termos-de-uso" element={<TermosUso />} />
-        <Route
-          path="/politica-de-privacidade"
-          element={<PoliticaPrivacidade />}
-        />
+        <Route path="/recuperar-senha" element={<RecuperarSenha />} />
+        <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
       </Route>
 
       <Route
