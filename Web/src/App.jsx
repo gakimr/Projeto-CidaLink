@@ -19,6 +19,7 @@ import TermosUso from "./pages/TermosUso/TermosUso";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade/PoliticaPrivacidade";
 import Notificacoes from "./pages/App/notificacoes/Notificacoes";
 import GerenciarOcorrencia from "./pages/App/GerenciarOcorrencia/GerenciarOcorrencia";
+import Chat from "./pages/App/Chat/Chat";
 import "./App.css";
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/app/perfil" element={<Perfil />} />
         <Route path="/app/notificacoes" element={<Notificacoes />} />
         <Route path="/app/ocorrencia/:id" element={<GerenciarOcorrencia />} />
+        <Route path="/app/bate-papo" element={<Chat />} />
       </Route>
     </Routes>
   );
