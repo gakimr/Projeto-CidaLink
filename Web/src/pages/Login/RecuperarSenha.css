@@ -1,0 +1,253 @@
+.recuperar-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 35px 16px;
+  box-sizing: border-box;
+}
+
+.recuperar-card {
+  display: block;
+  width: 100%;
+  max-width: 390px;
+  height: auto;
+  min-height: 0;
+  margin: 0 auto;
+  padding: 28px 30px;
+  box-sizing: border-box;
+  background: var(--bg-elevado, #fff);
+  border: 1px solid var(--borda, #e5e9e5);
+  border-radius: var(--raio, 14px);
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+
+.recuperar-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 15px;
+  border-radius: 15px;
+  background: #e8f5eb;
+  color: var(--verde, #239b50);
+}
+
+.recuperar-icone svg {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.recuperar-card h2 {
+  margin: 0 0 7px;
+  color: var(--azul);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.recuperar-card h3 {
+  margin: 0 0 15px;
+  color: var(--verde);
+  font-size: 0.97rem;
+  font-weight: 650;
+}
+
+.recuperar-card .texto-recuperacao {
+  max-width: 320px;
+  margin: 0 auto 20px;
+  color: var(--texto-suave);
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+
+.recuperar-card form {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+.recuperar-card .inputgp {
+  margin-bottom: 13px;
+}
+
+.recuperar-card .inputgp label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--texto-suave);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.recuperar-card .inputgp input {
+  display: block;
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background: var(--bg-elevado, #fff);
+  color: var(--texto);
+  font-size: 0.9rem;
+}
+
+.recuperar-card .inputgp input:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(25, 90, 150, 0.1);
+}
+
+.recuperar-card .ptlogin {
+  margin-top: 15px;
+  padding-top: 14px;
+  border-top: 1px solid var(--borda);
+}
+
+.recuperar-card .btnEntrar {
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  border-radius: 8px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.recuperar-card .btnEntrar:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.recuperar-dica {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 10px 12px;
+  margin-top: 16px;
+  border: 1px solid #e2eaf0;
+  border-radius: 8px;
+  background: #f5f8fa;
+  text-align: left;
+}
+
+.recuperar-dica span {
+  color: var(--azul);
+  font-size: 1rem;
+}
+
+.recuperar-dica p {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.77rem;
+  line-height: 1.5;
+}
+
+.recuperar-card .rsenha {
+  color: var(--azul);
+  font-size: 0.87rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.recuperar-card .rsenha:hover {
+  color: var(--verde);
+  text-decoration: underline;
+}
+
+.recuperar-card .sucesso-icone {
+  background: #e8f5eb;
+  color: #239b50;
+}
+
+.email-confirmacao {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #dcebe1;
+  border-radius: 8px;
+  background: #f4faf6;
+  color: #23804a;
+  font-size: 0.88rem;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.recuperar-card .aviso-final {
+  font-size: 0.82rem;
+}
+
+.recuperar-card .btnCd {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px;
+  border-radius: 8px;
+}
+
+.recuperar-tentar {
+  margin-top: 14px;
+  border: none;
+  background: transparent;
+  color: var(--azul);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.recuperar-tentar:hover {
+  text-decoration: underline;
+}
+
+.recuperar-card .erro-form {
+  padding: 9px 11px;
+  border-radius: 7px;
+  background: #fff0f0;
+  color: #c0392b;
+  font-size: 0.83rem;
+}
+
+@media (max-width: 480px) {
+  .recuperar-page {
+    padding: 22px 12px;
+  }
+
+  .recuperar-card {
+    max-width: 100%;
+    padding: 25px 20px;
+  }
+
+  .recuperar-card h2 {
+    font-size: 1.4rem;
+  }
+}
+
+body.darkmode .recuperar-card {
+  background: var(--bg-elevado, #202b38);
+}
+
+body.darkmode .recuperar-card .inputgp input {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+body.darkmode .recuperar-dica {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.darkmode .recuperar-dica p {
+  color: #d0d9e2;
+}
+
+body.darkmode .email-confirmacao {
+  background: rgba(35, 155, 80, 0.12);
+  color: #8cdbac;
+  border-color: rgba(35, 155, 80, 0.3);
+}
