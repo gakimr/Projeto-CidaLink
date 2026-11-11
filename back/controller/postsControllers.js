@@ -78,7 +78,7 @@ async function Criar(req, res) {
       : null;
 
     const id = await postagensModel.Create({
-      usuarioId: req.usuario.id, // vem do token, nunca do corpo
+      usuarioId: req.usuario.id,
       categoria,
       descricao: desc,
       logradouro: rua || null,
@@ -89,15 +89,22 @@ async function Criar(req, res) {
     });
 
     const criada = await postagensModel.GetById(id);
+
+    // notifica os admins; se falhar, a ocorrência continua criada
+    try {
+      await notificacoesModel.CriarParaAdmins(
+        id,
+        "Nova ocorrência recebida",
+        `Uma nova ocorrência de ${criada.categoria} foi publicada e precisa ser analisada.`,
+      );
+    } catch (erroNotificacao) {
+      console.error("Falha ao notificar admins:", erroNotificacao);
+    }
+
     return res.status(201).json({
       message: "Success",
       data: { postagem: formatarPostagem(criada) },
     });
-    await notificacoesModel.CriarParaAdmins(
-    id,
-    "Nova ocorrência recebida",
-    `Uma nova ocorrência de ${criada.categoria} foi publicada e precisa ser analisada.`
-  );
   } catch (error) {
     apagarArquivo(req.file?.filename);
     console.error("Erro no PostagensController (Criar):", error);
@@ -169,11 +176,10 @@ async function AtualizarStatus(req, res) {
 
     await postagensModel.UpdateStatus(postagem.id, status, resposta || null);
     const atualizada = await postagensModel.GetById(postagem.id);
-    
+
     const mudouStatus = postagem.status !== status;
 
-    const mudouResposta =
-      (postagem.resposta_admin || "") !== (resposta || "");
+    const mudouResposta = (postagem.resposta_admin || "") !== (resposta || "");
 
     if (mudouStatus || mudouResposta) {
       await notificacoesModel.Criar(
@@ -183,7 +189,7 @@ async function AtualizarStatus(req, res) {
         "Sua ocorrência foi atualizada",
         `A prefeitura atualizou sua ocorrência. Novo status: ${status}. ${
           resposta || ""
-        }`
+        }`,
       );
     }
     return res.status(200).json({

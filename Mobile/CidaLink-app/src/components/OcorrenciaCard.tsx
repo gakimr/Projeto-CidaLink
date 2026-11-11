@@ -4,7 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 type OcorrenciaCardProps = {
   nome: string;
   local: string;
-  foto: string;
+  foto?: string | null;
+  fotoPerfil?: string | null;
   tempo: string;
 };
 
@@ -12,13 +13,18 @@ export default function OcorrenciaCard({
   nome,
   local,
   foto,
+  fotoPerfil,
   tempo,
 }: OcorrenciaCardProps) {
   return (
     <View style={styles.card}>
       <View style={styles.userRow}>
         <View style={styles.avatar}>
-          <Ionicons name="person" size={18} color="#5b8def" />
+          {fotoPerfil ? (
+            <Image source={{ uri: fotoPerfil }} style={styles.avatarImagem} />
+          ) : (
+            <Ionicons name="person" size={18} color="#5b8def" />
+          )}
         </View>
         <View>
           <Text style={styles.nome}>{nome}</Text>
@@ -26,7 +32,7 @@ export default function OcorrenciaCard({
         </View>
       </View>
 
-      <Image source={{ uri: foto }} style={styles.foto} />
+      {foto ? <Image source={{ uri: foto }} style={styles.foto} /> : null}
 
       <View style={styles.footer}>
         <View style={styles.votes}>
@@ -62,6 +68,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: 10,
+  },
+  avatarImagem: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
   },
   nome: {
     fontWeight: "bold",
