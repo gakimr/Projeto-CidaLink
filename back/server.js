@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
+const notificacoesRoutes = require("./router/notificacoesRoutes.js");
 const { pastaUploads } = require("./utils/upload.js");
 
 dotenv.config();
@@ -29,6 +29,8 @@ app.use("/uploads", express.static(pastaUploads));
 app.use(authRoutes);
 app.use(postsRoutes);
 app.use(bairrosRoutes);
+app.use(notificacoesRoutes);
+console.log("Rotas de notificações carregadas!");
 
 const Port = process.env.PORT || 3000;
 

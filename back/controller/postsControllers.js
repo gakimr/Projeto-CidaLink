@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const postagensModel = require("../model/postsModel.js");
 const { pastaUploads } = require("../utils/upload.js");
-
+const notificacoesModel = require("../model/notificacoesModel.js");
 const CATEGORIAS = ["buraco", "iluminacao", "lixo", "saneamento", "outro"];
 const STATUS = ["pendente", "andamento", "resolvida"];
 
@@ -93,6 +93,11 @@ async function Criar(req, res) {
       message: "Success",
       data: { postagem: formatarPostagem(criada) },
     });
+    await notificacoesModel.CriarParaAdmins(
+    id,
+    "Nova ocorrência recebida",
+    `Uma nova ocorrência de ${criada.categoria} foi publicada e precisa ser analisada.`
+  );
   } catch (error) {
     apagarArquivo(req.file?.filename);
     console.error("Erro no PostagensController (Criar):", error);
@@ -164,7 +169,23 @@ async function AtualizarStatus(req, res) {
 
     await postagensModel.UpdateStatus(postagem.id, status, resposta || null);
     const atualizada = await postagensModel.GetById(postagem.id);
+    
+    const mudouStatus = postagem.status !== status;
 
+    const mudouResposta =
+      (postagem.resposta_admin || "") !== (resposta || "");
+
+    if (mudouStatus || mudouResposta) {
+      await notificacoesModel.Criar(
+        postagem.usuario_id,
+        postagem.id,
+        "status_atualizado",
+        "Sua ocorrência foi atualizada",
+        `A prefeitura atualizou sua ocorrência. Novo status: ${status}. ${
+          resposta || ""
+        }`
+      );
+    }
     return res.status(200).json({
       message: "Success",
       data: { postagem: formatarPostagem(atualizada) },
