@@ -34,7 +34,16 @@ export default function BottomNav() {
         color={pathname === "/feed" ? activeColor : inactiveColor}
         onPress={() => router.push("/feed")}
       />
-      <Ionicons name="notifications-outline" size={24} color={inactiveColor} />
+     <Ionicons
+  name={
+    pathname === "/notificacoes"
+      ? "notifications"
+      : "notifications-outline"
+  }
+  size={24}
+  color={pathname === "/notificacoes" ? activeColor : inactiveColor}
+  onPress={() => router.push("/(main)/notificacao")}
+/>
       <Ionicons
         name={pathname === "/publicar" ? "add-circle" : "add-circle-outline"}
         size={24}

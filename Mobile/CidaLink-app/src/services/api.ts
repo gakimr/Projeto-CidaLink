@@ -2,7 +2,7 @@ import axios, { isAxiosError } from "axios";
 import * as SecureStore from "expo-secure-store";
 
 export const API_URL =
-  process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:3000";
+  process.env.EXPO_PUBLIC_API_URL ?? "http://192.168.15.3:3000";
 
 export const TOKEN_KEY = "token";
 
