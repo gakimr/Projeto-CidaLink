@@ -35,6 +35,22 @@ const ICONES = {
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
   ),
+  painel: (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="3" y="3" width="18" height="18" rx="2" />
+    <path d="M3 9h18" />
+    <path d="M9 21V9" />
+  </svg>
+),
   criar: (
     <svg
       width="20"
@@ -121,6 +137,7 @@ const ITENS_MENU = [
 
   },
   { id: "inicio", rotulo: "Página Inicial", rota: "/app" },
+  { id: "painel", rotulo: "Painel Administrativo", rota: "/app/PainelAdm" },
   { id: "criar", rotulo: "Criar Ocorrência", rota: "/app/criar-ocorrencia" },
   { id: "mapa", rotulo: "Mapa", rota: "/app/mapa" },
   { id: "chat", rotulo: "Bate-papo", rota: "/app/bate-papo" },
@@ -131,11 +148,10 @@ export default function Sidebar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   
-  // administrador não cria ocorrências, só responde às dos cidadãos
   const itens =
-    user?.tipo === "admin"
-      ? ITENS_MENU.filter((item) => item.id !== "criar")
-      : ITENS_MENU;
+  user?.tipo === "admin"
+    ? ITENS_MENU.filter((item) => item.id !== "criar")
+    : ITENS_MENU.filter((item) => item.id !== "painel");
 
   function handleSair() {
   localStorage.removeItem("token");

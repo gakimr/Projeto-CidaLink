@@ -21,6 +21,8 @@ import Notificacoes from "./pages/App/notificacoes/Notificacoes";
 import GerenciarOcorrencia from "./pages/App/GerenciarOcorrencia/GerenciarOcorrencia";
 import RecuperarSenha from "./pages/Login/RecuperarSenha";
 import Chat from "./pages/App/Chat/Chat";
+import PainelAdm from "./pages/App/PainelAdm/PainelAdm";
+import RotaAdmin from "./routes/RotaAdmin";
 import "./App.css";
 
 function App() {
@@ -62,6 +64,7 @@ function App() {
         <Route path="/app/notificacoes" element={<Notificacoes />} />
         <Route path="/app/ocorrencia/:id" element={<GerenciarOcorrencia />} />
         <Route path="/app/bate-papo" element={<Chat />} />
+         <Route path="/app/PainelAdm" element={ <RotaAdmin> <PainelAdm /> </RotaAdmin> } />
       </Route>
     </Routes>
   );
