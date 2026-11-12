@@ -1,13 +1,14 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import type { StatusOcorrencia } from "@/services/ocorrencias";
 
 type OcorrenciaPopupProps = {
   titulo: string;
   categoria: string;
   local: string;
   descricao: string;
-  status: "em_andamento" | "resolvido";
-  foto: string;
+  status: StatusOcorrencia;
+  foto?: string | null;
   onClose: () => void;
 };
 
@@ -21,8 +22,9 @@ export default function OcorrenciaPopup({
   onClose,
 }: OcorrenciaPopupProps) {
   const statusConfig = {
-    em_andamento: { label: "EM ANDAMENTO", color: "#f5a623" },
-    resolvido: { label: "RESOLVIDO", color: "#2e7d32" },
+    pendente: { label: "PENDENTE", color: "#d32f2f" },
+    andamento: { label: "EM ANDAMENTO", color: "#f5a623" },
+    resolvida: { label: "RESOLVIDA", color: "#2e7d32" },
   };
   const { label, color } = statusConfig[status];
 
@@ -32,7 +34,7 @@ export default function OcorrenciaPopup({
         <Ionicons name="close" size={18} color="#333" />
       </TouchableOpacity>
 
-      <Image source={{ uri: foto }} style={styles.foto} />
+      {foto ? <Image source={{ uri: foto }} style={styles.foto} /> : null}
 
       <View style={styles.content}>
         <Text style={styles.local}>{local}</Text>
@@ -89,6 +91,7 @@ const styles = StyleSheet.create({
     color: "#3b6fd6",
     fontWeight: "bold",
     marginBottom: 2,
+    marginRight: 28,
   },
   categoriaRow: {
     flexDirection: "row",

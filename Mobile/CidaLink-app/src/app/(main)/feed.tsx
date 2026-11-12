@@ -1,41 +1,48 @@
-import { View, StyleSheet, FlatList, Image } from "react-native";
-import { useRouter } from "expo-router";
+import { useCallback, useState } from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useFocusEffect, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import OcorrenciaCard from "@/components/OcorrenciaCard";
-
-const MOCK_OCORRENCIAS = [
-  {
-    id: "1",
-    nome: "Cidadã Maria",
-    local: "Centro - Avenida Principal",
-    foto: "https://images.unsplash.com/photo-1594818379496-da1e345b0ded?w=800",
-    tempo: "2 dias atrás",
-  },
-  {
-    id: "2",
-    nome: "Cidadão Pedro",
-    local: "Centro - Avenida Principal",
-    foto: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800",
-    tempo: "3 dias atrás",
-  },
-  {
-    id: "3",
-    nome: "Cidadão Pedro",
-    local: "Centro - Avenida Principal",
-    foto: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800",
-    tempo: "3 dias atrás",
-  },
-  {
-    id: "4",
-    nome: "Cidadão Pedro",
-    local: "Centro - Avenida Principal",
-    foto: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800",
-    tempo: "3 dias atrás",
-  },
-];
+import { mensagemDeErro, urlArquivo } from "@/services/api";
+import {
+  listarOcorrencias,
+  localDaOcorrencia,
+  tempoDecorrido,
+  type Ocorrencia,
+} from "@/services/ocorrencias";
 
 export default function FeedScreen() {
   const router = useRouter();
+  const [ocorrencias, setOcorrencias] = useState<Ocorrencia[]>([]);
+  const [carregando, setCarregando] = useState(true);
+  const [atualizando, setAtualizando] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
+
+  const carregar = useCallback(async () => {
+    try {
+      setErro(null);
+      setOcorrencias(await listarOcorrencias());
+    } catch (e) {
+      setErro(mensagemDeErro(e, "Não foi possível carregar o feed."));
+    } finally {
+      setCarregando(false);
+      setAtualizando(false);
+    }
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      carregar();
+    }, [carregar]),
+  );
 
   return (
     <View style={styles.container}>
@@ -55,19 +62,48 @@ export default function FeedScreen() {
         <Ionicons name="person-circle-outline" size={32} color="#333" />
       </View>
 
-      <FlatList
-        data={MOCK_OCORRENCIAS}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <OcorrenciaCard
-            nome={item.nome}
-            local={item.local}
-            foto={item.foto}
-            tempo={item.tempo}
-          />
-        )}
-        contentContainerStyle={styles.listContent}
-      />
+      {carregando ? (
+        <View style={styles.centro}>
+          <ActivityIndicator size="large" color="#2e7d32" />
+        </View>
+      ) : (
+        <FlatList
+          data={ocorrencias}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <OcorrenciaCard
+              nome={item.autor.nome}
+              local={localDaOcorrencia(item)}
+              foto={urlArquivo(item.foto)}
+              fotoPerfil={urlArquivo(item.autor.fotoPerfil)}
+              tempo={tempoDecorrido(item.criadoEm)}
+            />
+          )}
+          contentContainerStyle={styles.listContent}
+          refreshing={atualizando}
+          onRefresh={() => {
+            setAtualizando(true);
+            carregar();
+          }}
+          ListEmptyComponent={
+            <View style={styles.centro}>
+              <Ionicons
+                name={erro ? "cloud-offline-outline" : "document-outline"}
+                size={40}
+                color="#999"
+              />
+              <Text style={styles.vazioTexto}>
+                {erro ?? "Nenhuma ocorrência publicada ainda."}
+              </Text>
+              {erro && (
+                <TouchableOpacity style={styles.botao} onPress={carregar}>
+                  <Text style={styles.botaoTexto}>Tentar novamente</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          }
+        />
+      )}
     </View>
   );
 }
@@ -96,8 +132,32 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginRight: 6,
   },
-
   listContent: {
     paddingBottom: 100,
+    flexGrow: 1,
+  },
+  centro: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 60,
+    paddingHorizontal: 32,
+    gap: 12,
+  },
+  vazioTexto: {
+    color: "#777",
+    fontSize: 14,
+    textAlign: "center",
+  },
+  botao: {
+    backgroundColor: "#2e7d32",
+    borderRadius: 10,
+    paddingHorizontal: 18,
+    paddingVertical: 11,
+  },
+  botaoTexto: {
+    color: "#fff",
+    fontWeight: "700",
+    fontSize: 13,
   },
 });
