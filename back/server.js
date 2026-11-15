@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -8,7 +9,7 @@ dotenv.config();
 console.log("JWT_SECRET carregado?", !!process.env.JWT_SECRET);
 
 const path = require("path");
-const result = require("dotenv").config({ path: path.join(__dirname, ".env") });
+const result = dotenv.config({ path: path.join(__dirname, ".env") });
 const postsRoutes = require("./router/postsRoutes.js");
 const bairrosRoutes = require("./router/bairrosRoutes.js");
 
@@ -25,11 +26,23 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+ 
+
+
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    mensagem: "Backend CidaLink funcionando!",
+    banco: "Conectado",
+  });
+});
+
 app.use("/uploads", express.static(pastaUploads));
 app.use(authRoutes);
 app.use(postsRoutes);
 app.use(bairrosRoutes);
 app.use(notificacoesRoutes);
+
 console.log("Rotas de notificações carregadas!");
 
 const Port = process.env.PORT || 3000;

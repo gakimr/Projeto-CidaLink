@@ -1,3 +1,4 @@
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -11,7 +12,7 @@ import {
   View,
 } from "react-native";
 import { WebView } from "react-native-webview";
-import { useFocusEffect } from "expo-router";
+import { useFocusEffect, router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import OcorrenciaPopup from "@/components/OcorrenciaPopup";
 import { urlArquivo } from "@/services/api";
@@ -36,7 +37,6 @@ const ROTULO_STATUS: Record<StatusOcorrencia, string> = {
   resolvida: "resolvida",
 };
 
-// minúsculas e sem acento
 function normalizar(texto: string) {
   return texto
     .normalize("NFD")
@@ -45,7 +45,6 @@ function normalizar(texto: string) {
     .trim();
 }
 
-// O HTML fixo, os pontos são enviados depois via setMarcadores(),
 const HTML = `<!DOCTYPE html>
 <html>
 <head>
@@ -86,15 +85,12 @@ const HTML = `<!DOCTYPE html>
         });
       });
 
-      // enquadra todos os pontos só na primeira carga
       if (!enquadrou && pontos.length > 0) {
         enquadrou = true;
         map.fitBounds(pontos, { padding: [60, 60], maxZoom: 16 });
       }
     };
 
-    // usado pela busca: voa até o ponto, deixando-o um pouco acima do centro
-    // para o popup (parte de baixo da tela) não cobrir o marcador
     window.focarEm = function (lat, lng) {
       var zoom = 17;
       var alvo = map.project([lat, lng], zoom).add([0, 90]);
@@ -122,7 +118,8 @@ export default function MapaScreen() {
   const carregar = useCallback(async () => {
     try {
       setOcorrencias(await listarOcorrencias());
-    } catch {
+    } catch (error) {
+      console.error("Erro ao carregar ocorrências:", error);
     } finally {
       setCarregando(false);
     }
@@ -201,7 +198,6 @@ export default function MapaScreen() {
         ref={webViewRef}
         style={styles.map}
         originWhitelist={["*"]}
-        // baseUrl evita bloqueio dos tiles do OpenStreetMap por falta de Referer
         source={{ html: HTML, baseUrl: "https://cidalink.app" }}
         javaScriptEnabled
         onMessage={(event) => {
@@ -226,6 +222,7 @@ export default function MapaScreen() {
             >
               <Ionicons name="arrow-back" size={24} color="#333" />
             </TouchableOpacity>
+
             <TextInput
               style={styles.campoBusca}
               value={busca}
@@ -236,6 +233,7 @@ export default function MapaScreen() {
               returnKeyType="search"
               autoCorrect={false}
             />
+
             {busca.length > 0 ? (
               <TouchableOpacity
                 onPress={() => setBusca("")}
@@ -255,13 +253,28 @@ export default function MapaScreen() {
             >
               <Ionicons name="search-outline" size={24} color="#333" />
             </TouchableOpacity>
+
             <View style={styles.logoContainer}>
               <Image
                 source={require("@/assets/images/LogoCida.png")}
                 style={styles.logoIcon}
+                resizeMode="contain"
               />
             </View>
-            <Ionicons name="person-circle-outline" size={32} color="#333" />
+
+            {/* BOTÃO QUE ABRE O PERFIL */}
+            <TouchableOpacity
+              onPress={() => router.push("/(main)/perfil")}
+              accessibilityLabel="Abrir perfil"
+              activeOpacity={0.7}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <Ionicons
+                name="person-circle-outline"
+                size={32}
+                color="#07543d"
+              />
+            </TouchableOpacity>
           </>
         )}
       </View>
@@ -288,10 +301,12 @@ export default function MapaScreen() {
                         { backgroundColor: COR_STATUS[o.status] },
                       ]}
                     />
+
                     <View style={styles.resultadoTextos}>
                       <Text style={styles.resultadoTitulo} numberOfLines={1}>
                         {rotuloCategoria(o.categoria)}
                       </Text>
+
                       <Text style={styles.resultadoLocal} numberOfLines={1}>
                         {localDaOcorrencia(o)}
                       </Text>
@@ -360,7 +375,6 @@ const styles = StyleSheet.create({
   logoIcon: {
     width: 100,
     height: 100,
-    resizeMode: "contain",
     marginRight: 6,
   },
   campoBusca: {

@@ -59,7 +59,12 @@ export default function FeedScreen() {
             style={styles.logoIcon}
           />
         </View>
-        <Ionicons name="person-circle-outline" size={32} color="#333" />
+       <Ionicons
+  name="person-circle-outline"
+  size={32}
+  color="#333"
+  onPress={() => router.push("/perfil")}
+/>
       </View>
 
       {carregando ? (
