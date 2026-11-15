@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import App from "./App";
+import "./i18n";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
