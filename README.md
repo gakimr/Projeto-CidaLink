@@ -205,9 +205,9 @@ EXPO_PUBLIC_API_URL=http://localhost:3000
 **Mobile**
 
 - [x] Login, cadastro, sessão persistente e logout
-- [ ] Feed com dados do banco
-- [ ] Mapa com as ocorrências
-- [ ] Criar ocorrência com foto e localização
+- [x] Feed com dados do banco
+- [x]  Mapa com as ocorrências
+- [x] Criar ocorrência com foto e localização
 - [ ] Perfil
 
 ## Equipe
