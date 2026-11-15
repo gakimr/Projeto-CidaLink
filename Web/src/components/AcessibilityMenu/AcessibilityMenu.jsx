@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import SvgFiltrosDaltonismo from "./SvgFiltrosDaltonismo";
 import "./AcessibilityMenu.css";
+import VLibras from "./VLibras";
 
 const OPCOESFILTRO = [
   "Protanopia",
@@ -16,6 +17,7 @@ export default function AcessibilityMenu() {
   const [open, setopen] = useState(false);
   const [darkmode, setdarkmode] = useState(false);
   const [filter, setfilter] = useState(null);
+  const [librasAtivo, setLibrasAtivo] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle("darkmode", darkmode);
@@ -35,6 +37,9 @@ export default function AcessibilityMenu() {
     setfilter(null);
     setdarkmode(false);
   }
+    const abrirLibras = () => {
+  setLibrasAtivo(true);
+  };
 
   return (
     <div className="acessibility">
@@ -59,6 +64,13 @@ export default function AcessibilityMenu() {
           >
             🌙 Modo escuro
           </button>
+          <button
+            type="button"
+            className="acessItem"
+            onClick={abrirLibras}
+          >
+            🤟 Traduzir para Libras
+          </button>
 
           <div className="div-acessibility"></div>
 
@@ -80,6 +92,7 @@ export default function AcessibilityMenu() {
           </button>
         </div>
       )}
+      {librasAtivo && <VLibras />}
     </div>
   );
 }
