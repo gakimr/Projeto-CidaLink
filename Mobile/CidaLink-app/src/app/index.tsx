@@ -98,8 +98,13 @@ export default function LoginScreen() {
             onPress={() => setShowPassword(!showPassword)}
           />
         </View>
-        <Text style={styles.recsenha}>Esqueceu a senha?</Text>
-
+       <TouchableOpacity
+  onPress={() => router.push("/recuperar-senha")}
+>
+  <Text style={styles.recsenha}>
+    Esqueceu a senha?
+  </Text>
+</TouchableOpacity>
         {erro ? <Text style={styles.erro}>{erro}</Text> : null}
 
         <TouchableOpacity
