@@ -29,14 +29,16 @@ function App() {
   return (
     <Routes>
       <Route
-        element={
-          <div>
-            <Header />
-            <Outlet />
-            <Footer />
-          </div>
-        }
-      >
+  element={
+    <div className="layout-publico">
+      <Header />
+      <div className="layout-publico-conteudo">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  }
+>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginCidadao />} />
         <Route path="/loginadm" element={<LoginAdmin />} />
