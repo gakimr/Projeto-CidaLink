@@ -1,6 +1,10 @@
+
 .feed-pagina {
   width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
+
 .feed-lista {
   width: 100%;
   max-width: 700px;
@@ -8,35 +12,48 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
 }
-/*mudança da nilce*/
+
+/* CABEÇALHO */
+
 .feed-topo {
   max-width: 620px;
   margin: 0 auto 24px;
+  padding: 0 16px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .feed-topo .app-titulo {
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .feed-topo p {
-  margin-top: 4px;
+  margin-top: 8px;
   color: var(--texto-suave);
   font-size: 0.9rem;
   text-align: center;
+  line-height: 1.5;
 }
 
+/* FILTROS */
+
 .feed-filtros {
+  width: 100%;
   max-width: 720px;
   margin: 0 auto 24px;
+  padding: 0 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+  box-sizing: border-box;
 }
 
 .feed-filtro {
@@ -50,8 +67,7 @@
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
+  transition: background-color 0.2s ease,
     border-color 0.2s ease,
     color 0.2s ease,
     transform 0.2s ease;
@@ -82,6 +98,8 @@
   color: white;
 }
 
+/* BOTÃO NOVA OCORRÊNCIA */
+
 .feed-criar-btn {
   border: none;
   border-radius: 999px;
@@ -94,8 +112,7 @@
   white-space: nowrap;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 85, 190, 0.2);
-  transition:
-    background-color 0.2s ease,
+  transition: background-color 0.2s ease,
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
@@ -111,23 +128,31 @@
   outline-offset: 2px;
 }
 
+/* AVISOS */
+
 .feed-aviso {
   text-align: center;
   color: var(--texto-suave);
   font-size: 0.9rem;
-  padding: 24px 0;
+  padding: 24px 12px;
 }
 
 .feed-aviso-erro {
   color: var(--vermelho);
 }
 
+/* CONTEÚDO DOS CARDS */
+
 .feed-corpo {
   padding: 0 16px 16px;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .feed-categoria {
   display: inline-block;
+  max-width: 100%;
+  box-sizing: border-box;
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--texto);
@@ -136,6 +161,7 @@
   border-radius: 999px;
   padding: 3px 12px;
   margin-bottom: 8px;
+  overflow-wrap: anywhere;
 }
 
 .feed-descricao {
@@ -144,21 +170,134 @@
   color: var(--texto);
   white-space: pre-line;
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
-@media (max-width: 700px) {
-  .feed-topo {
-    padding: 0 16px;
+/* TABLETS */
+
+@media (max-width: 850px) {
+  .feed-topo .app-titulo {
+    font-size: 2.5rem;
   }
 
-  .feed-topo p {
-    display: block;
+  .feed-lista {
+    max-width: 680px;
   }
 
   .feed-filtros {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 2px 16px 10px;
+    max-width: 680px;
   }
+}
+
+/* CELULARES */
+
+@media (max-width: 700px) {
+  .feed-pagina {
+    padding: 0;
+  }
+
+  .feed-topo {
+    margin-bottom: 20px;
+    padding: 0 14px;
+  }
+
+  .feed-topo .app-titulo {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+    line-height: 1.2;
+  }
+
+  .feed-topo p {
+    font-size: 0.82rem;
+    margin-top: 8px;
+  }
+
+  .feed-filtros {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    margin-bottom: 20px;
+    padding: 0 12px;
+  }
+
+  .feed-filtro {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 6px;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  .feed-criar-btn {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 0.88rem;
+  }
+
+  .feed-lista {
+    width: 100%;
+    max-width: 100%;
+    gap: 15px;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .feed-corpo {
+    padding: 0 13px 14px;
+  }
+
+  .feed-categoria {
+    font-size: 0.74rem;
+  }
+
+  .feed-descricao {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .feed-aviso {
+    font-size: 0.85rem;
+    padding: 20px 10px;
+  }
+}
+
+/* CELULARES PEQUENOS */
+
+@media (max-width: 380px) {
+  .feed-topo .app-titulo {
+    font-size: 1.65rem;
+  }
+
+  .feed-topo p {
+    font-size: 0.78rem;
+  }
+
+  .feed-filtros {
+    gap: 7px;
+    padding: 0 8px;
+  }
+
+  .feed-filtro {
+    font-size: 0.72rem;
+    padding: 9px 4px;
+  }
+
+  .feed-lista {
+    padding: 0 7px;
+  }
+
+  .feed-corpo {
+    padding: 0 11px 12px;
+  }
+}
+
+/* EVITA ELEMENTOS ESTOURANDO A TELA */
+
+.feed-pagina,
+.feed-pagina * {
+  box-sizing: border-box;
+}
+
+.feed-pagina img {
+  max-width: 100%;
 }
