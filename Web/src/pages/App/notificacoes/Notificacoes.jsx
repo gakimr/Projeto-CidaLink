@@ -12,6 +12,7 @@ const ICONE_TIPO = {
   nova_ocorrencia: "🚨",
   nova_mensagem: "💬",
   status_atualizado: "📢",
+  resposta_admin: "👨‍💼",
 };
 
 function formatarData(data) {
@@ -29,6 +30,35 @@ function formatarData(data) {
     minute: "2-digit",
   });
 }
+
+
+function organizarResposta(notificacao) {
+  const mensagem = notificacao.mensagem || "";
+
+  const statusEncontrado = mensagem.match(
+    /(?:Status atual|Novo status):\s*(pendente|andamento|resolvida)/i
+  );
+
+  const nomesStatus = {
+    pendente: "Pendente",
+    andamento: "Em andamento",
+    resolvida: "Resolvida",
+  };
+
+  const resposta = mensagem
+    .replace(/^A prefeitura respondeu à sua ocorrência\.?\s*/i, "")
+    .replace(/^A prefeitura atualizou sua ocorrência\.?\s*/i, "")
+    .replace(/^Resposta da prefeitura:\s*/i, "")
+    .replace(/Novo status:\s*(pendente|andamento|resolvida)\.?\s*/i, "")
+    .replace(/Status atual:\s*(pendente|andamento|resolvida)\.?\s*/i, "")
+    .trim();
+
+  return {
+    resposta,
+    status: nomesStatus[statusEncontrado?.[1]?.toLowerCase()] || "",
+  };
+}
+
 
 export default function Notificacoes() {
   const [notificacoes, setNotificacoes] = useState([]);
@@ -100,7 +130,6 @@ export default function Notificacoes() {
 
     if (!notificacao || notificacao.lida_em) return;
 
-    // Atualiza a tela imediatamente
     setNotificacoes((lista) =>
       lista.map((n) =>
         n.id === id
@@ -114,7 +143,6 @@ export default function Notificacoes() {
     } catch (error) {
       console.error("Erro ao marcar notificação como lida:", error);
 
-      // Recupera os dados verdadeiros do servidor
       carregarNotificacoes(true);
 
       setErro("Não foi possível marcar a notificação como lida.");
@@ -273,58 +301,87 @@ export default function Notificacoes() {
         {!carregando &&
           !erro &&
           notificacoesFiltradas.map((notificacao) => {
-            const lida = Boolean(notificacao.lida_em);
+          const lida = Boolean(notificacao.lida_em);
 
-            return (
-              <article
-                key={notificacao.id}
-                className={`notificacao-card ${
-                  lida ? "notificacao-lida" : "notificacao-nao-lida"
-                }`}
-              >
-                <div className="notificacao-icone">
-                  {ICONE_TIPO[notificacao.tipo] || "🔔"}
-                </div>
+        const respostaAdmin = [
+          "resposta_admin",
+          "status_atualizado",
+        ].includes(notificacao.tipo);
 
-                <div className="notificacao-conteudo">
-                  <div className="notificacao-cabecalho">
-                    <h3>{notificacao.titulo}</h3>
+        const dadosResposta = organizarResposta(notificacao);
 
-                    {!lida && (
-                      <span className="notificacao-tag">
-                        Nova
-                      </span>
-                    )}
-                  </div>
+        return (
+          <article
+            key={notificacao.id}
+            className={`notificacao-card ${
+              lida ? "notificacao-lida" : "notificacao-nao-lida"
+            }`}
+          >
+            <div className="notificacao-conteudo">
+              <div className="notificacao-cabecalho">
+                <h3>
+                  {respostaAdmin
+                    ? `Ocorrência #${notificacao.postagem_id}`
+                    : notificacao.titulo}
+                </h3>
 
+                {!lida && (
+                  <span className="notificacao-tag">Nova</span>
+                )}
+              </div>
+
+              {respostaAdmin ? (
+                <>
+                <p>
+                  A prefeitura respondeu à sua ocorrência:
+                  {dadosResposta.resposta && ` ${dadosResposta.resposta}`}
+                </p>
+
+                  {dadosResposta.status && (
+                    <span className="notificacao-status">
+                      Status: {dadosResposta.status}
+                    </span>
+                  )}
+                </>
+              ) : (
+                <>
                   <p>{notificacao.mensagem}</p>
-
-                  <span className="notificacao-data">
-                    <span>◷</span>
-                    {formatarData(notificacao.criado_em)}
-                  </span>
 
                   {notificacao.postagem_id && (
                     <span className="notificacao-referencia">
                       Ocorrência #{notificacao.postagem_id}
                     </span>
                   )}
-                </div>
+                </>
+              )}
 
-                {!lida && (
-                  <button
-                    type="button"
-                    className="notificacao-marcar-lida"
-                    onClick={() => marcarLida(notificacao.id)}
-                    title="Marcar como lida"
-                    aria-label={`Marcar ${notificacao.titulo} como lida`}
-                  >
-                    ✓
-                  </button>
-                )}
-              </article>
-            );
-          })}
+             <div
+                className="notificacao-data"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  flexBasis: "100%",
+                  marginTop: "10px",
+                }}
+              >
+                ◷ {formatarData(notificacao.criado_em)}
+              </div>
+            </div>
+
+            {!lida && (
+              <button
+                type="button"
+                className="notificacao-marcar-lida"
+                onClick={() => marcarLida(notificacao.id)}
+                title="Marcar como lida"
+                aria-label="Marcar notificação como lida"
+              >
+                ✓
+              </button>
+            )}
+          </article>
+        );
+        })}
       </div>
     </section>
   );

@@ -1,9 +1,7 @@
-
 .notificacoes-pagina {
   width: 100%;
 }
 
-/* Cabeçalho */
 .notificacoes-topo {
   max-width: 620px;
   margin: 0 auto 24px;
@@ -23,8 +21,6 @@
   font-size: 0.9rem;
   line-height: 1.5;
 }
-
-/* Resumo das notificações */
 .notificacoes-resumo {
   width: calc(100% - 32px);
   max-width: 700px;
@@ -89,7 +85,6 @@
   font-weight: 700;
 }
 
-/* Área dos filtros */
 .notificacoes-acoes {
   max-width: 720px;
   margin: 0 auto 22px;
@@ -250,7 +245,6 @@
   transform: none;
 }
 
-/* Lista */
 .notificacoes-lista {
   width: 100%;
   max-width: 700px;
@@ -261,8 +255,6 @@
   flex-direction: column;
   gap: 12px;
 }
-
-/* Cartão de notificação */
 .notificacao-card {
   width: 100%;
   min-width: 0;
@@ -398,7 +390,6 @@
   color: white;
 }
 
-/* Mensagens de carregamento e erro */
 .notificacoes-aviso {
   padding: 24px 0;
   text-align: center;
@@ -429,7 +420,6 @@
   cursor: pointer;
 }
 
-/* Estado vazio */
 .notificacoes-vazio {
   padding: 45px 20px;
   border: 1px dashed var(--borda);
@@ -467,7 +457,117 @@
   flex: 1;
 }
 
-/* Responsividade */
+.notificacoes-lista {
+  max-width: 680px;
+  gap: 14px;
+}
+
+.notificacao-card {
+  padding: 18px;
+  gap: 13px;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  background: var(--bg-elevado);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notificacao-card:hover {
+  transform: none;
+  border-color: var(--verde);
+  box-shadow: 0 4px 14px rgba(40, 170, 70, 0.08);
+}
+
+.notificacao-nao-lida {
+  border-left: 4px solid var(--verde);
+  background: var(--bg-elevado);
+}
+
+.notificacao-lida {
+  opacity: 0.75;
+}
+
+.notificacao-icone {
+  width: 42px;
+  height: 42px;
+  background: var(--verdeclaro);
+  border: none;
+  font-size: 1.2rem;
+}
+
+.notificacao-cabecalho {
+  justify-content: space-between;
+  margin-bottom: 9px;
+}
+
+.notificacao-cabecalho h3 {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.notificacao-tag {
+  padding: 4px 9px;
+  font-size: 0.67rem;
+}
+
+.notificacao-conteudo p {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--verdeclaro);
+  color: var(--texto);
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+
+.notificacao-data {
+  font-size: 0.73rem;
+}
+
+.notificacao-referencia {
+  margin-top: 8px;
+  color: var(--texto-suave);
+  font-size: 0.76rem;
+}
+
+.notificacao-marcar-lida {
+  width: 29px;
+  height: 29px;
+}
+.notificacao-status {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #e8f5e9;
+  color: #287a38;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.notificacao-conteudo > strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--verdecida);
+}
+.notificacao-conteudo {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+
+.notificacao-data {
+  display: block !important;
+  width: 100%;
+  margin-top: 10px;
+}
+.notificacao-conteudo p {
+  background: transparent !important;
+  padding: 0 !important;
+}
 @media (max-width: 700px) {
   .notificacoes-topo {
     padding: 0 16px;
@@ -517,6 +617,19 @@
   }
 
   .notificacao-conteudo p {
+    font-size: 0.82rem;
+  }
+  .notificacao-card {
+    padding: 14px;
+    border-radius: 13px;
+  }
+
+  .notificacao-cabecalho h3 {
+    font-size: 0.88rem;
+  }
+
+  .notificacao-conteudo p {
+    padding: 10px 12px;
     font-size: 0.82rem;
   }
 }
