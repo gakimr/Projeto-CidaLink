@@ -480,3 +480,404 @@
     padding: 28px 24px;
   }
 }
+
+
+@media (max-width: 1100px) {
+  .plat-hero {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .plat-funcionalidades,
+  .plat-registro,
+  .plat-mapa,
+  .plat-admin,
+  .plat-cta {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .plat-registro .container,
+  .plat-mapa .container,
+  .plat-admin .container {
+    gap: 45px;
+  }
+
+  .plat-registro-card {
+    max-width: 390px;
+  }
+}
+
+@media (max-width: 900px) {
+  .plat-hero {
+    padding: 80px 6%;
+  }
+
+  .plat-hero h1 {
+    font-size: clamp(36px, 7vw, 54px);
+  }
+
+  .plat-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .plat-registro .container,
+  .plat-mapa .container,
+  .plat-admin .container {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .plat-registro-visual,
+  .plat-mapa-visual {
+    width: 100%;
+  }
+
+  .plat-registro-card {
+    max-width: 520px;
+  }
+
+  .plat-mapa-visual img {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .plat-admin-visual {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .plat-hero {
+    padding: 70px 6%;
+  }
+
+  .plat-hero h1 {
+    font-size: 38px;
+    line-height: 1.15;
+  }
+
+  .plat-hero p {
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .plat-hero-acoes {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .plat-hero-acoes .plat-btn,
+  .plat-hero-acoes .plat-btn-secundario {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .plat-funcionalidades,
+  .plat-registro,
+  .plat-mapa,
+  .plat-admin {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .plat-section-header {
+    margin-bottom: 40px;
+  }
+
+  .plat-section-header h2 {
+    font-size: 32px;
+  }
+
+  .plat-section-header p {
+    font-size: 15px;
+  }
+
+  .plat-card {
+    padding: 30px 24px;
+  }
+
+  .plat-card h3 {
+    font-size: 20px;
+  }
+
+  .plat-registro-texto h2,
+  .plat-mapa-texto h2,
+  .plat-admin-texto h2 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  .plat-registro-texto p,
+  .plat-mapa-texto p,
+  .plat-admin-texto p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .plat-registro-card {
+    padding: 28px 24px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .plat-mapa-visual img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .plat-admin-visual {
+    min-height: 240px;
+    padding: 25px;
+  }
+
+  .plat-cta {
+    padding: 70px 6%;
+  }
+
+  .plat-cta h2 {
+    font-size: 34px;
+  }
+
+  .plat-cta p {
+    font-size: 16px;
+  }
+
+  .plat-cta-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 600px) {
+  .plat-hero {
+    padding: 60px 20px;
+  }
+
+  .plat-funcionalidades,
+  .plat-registro,
+  .plat-mapa,
+  .plat-admin,
+  .plat-cta {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .plat-funcionalidades,
+  .plat-registro,
+  .plat-mapa,
+  .plat-admin {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .plat-etiqueta {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+  }
+
+  .plat-hero h1 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .plat-hero p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .plat-btn,
+  .plat-btn-secundario {
+    padding: 13px 20px;
+    font-size: 14px;
+  }
+
+  .plat-section-header {
+    margin-bottom: 35px;
+  }
+
+  .plat-section-header h2 {
+    font-size: 29px;
+    line-height: 1.25;
+  }
+
+  .plat-section-header p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .plat-cards {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .plat-card {
+    padding: 26px 22px;
+    border-radius: 13px;
+  }
+
+  .plat-card-icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 20px;
+  }
+
+  .plat-card h3 {
+    font-size: 19px;
+  }
+
+  .plat-card p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .plat-registro-texto h2,
+  .plat-mapa-texto h2,
+  .plat-admin-texto h2 {
+    font-size: 29px;
+    line-height: 1.25;
+  }
+
+  .plat-registro-texto p,
+  .plat-mapa-texto p,
+  .plat-admin-texto p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .plat-registro-texto li {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .plat-registro-card {
+    padding: 23px 18px;
+    border-radius: 15px;
+  }
+
+  .plat-registro-card h3 {
+    font-size: 21px;
+  }
+
+  .plat-registro-card > p {
+    font-size: 14px;
+  }
+
+  .plat-campo-exemplo {
+    margin-bottom: 15px;
+  }
+
+  .plat-campo-exemplo span {
+    font-size: 13px;
+  }
+
+  .plat-campo-exemplo div {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .plat-campo-exemplo .plat-campo-descricao {
+    min-height: 75px;
+  }
+
+  .plat-upload-exemplo {
+    padding: 16px 12px;
+    font-size: 13px;
+  }
+
+  .plat-registro-aviso {
+    font-size: 11px;
+  }
+
+  .plat-mapa-visual img {
+    border-radius: 14px;
+  }
+
+  .plat-admin-visual {
+    min-height: 220px;
+    border-radius: 15px;
+  }
+
+  .plat-admin-visual svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .plat-admin-visual span {
+    font-size: 13px;
+  }
+
+  .plat-admin-visual p {
+    font-size: 14px;
+  }
+
+  .plat-cta {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .plat-cta h2 {
+    font-size: 29px;
+    line-height: 1.25;
+  }
+
+  .plat-cta p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 400px) {
+  .plat-hero {
+    padding: 50px 17px;
+  }
+
+  .plat-funcionalidades,
+  .plat-registro,
+  .plat-mapa,
+  .plat-admin,
+  .plat-cta {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .plat-hero h1 {
+    font-size: 29px;
+  }
+
+  .plat-hero p {
+    font-size: 14px;
+  }
+
+  .plat-section-header h2 {
+    font-size: 27px;
+  }
+
+  .plat-card {
+    padding: 23px 19px;
+  }
+
+  .plat-registro-texto h2,
+  .plat-mapa-texto h2,
+  .plat-admin-texto h2,
+  .plat-cta h2 {
+    font-size: 27px;
+  }
+
+  .plat-registro-card {
+    padding: 20px 15px;
+  }
+
+  .plat-admin-visual {
+    min-height: 200px;
+  }
+
+  .plat-cta-btn {
+    padding: 13px 18px;
+    font-size: 14px;
+  }
+}

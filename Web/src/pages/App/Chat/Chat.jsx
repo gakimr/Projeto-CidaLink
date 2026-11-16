@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import "./Chat.css";
 
@@ -49,6 +50,7 @@ export default function Chat() {
   const [conversaAtiva, setConversaAtiva] = useState(1);
   const [busca, setBusca] = useState("");
   const [mensagem, setMensagem] = useState("");
+  const [mobileConversaAberta, setMobileConversaAberta] = useState(false);
 
   const conversa = conversas.find((item) => item.id === conversaAtiva);
 
@@ -56,8 +58,18 @@ export default function Chat() {
     item.nome.toLowerCase().includes(busca.toLowerCase())
   );
 
+  function abrirConversa(id) {
+    setConversaAtiva(id);
+    setMobileConversaAberta(true);
+  }
+
+  function voltarParaConversas() {
+    setMobileConversaAberta(false);
+  }
+
   function enviarMensagem(event) {
     event.preventDefault();
+
     if (!mensagem.trim() || !conversa) return;
 
     const novaMensagem = {
@@ -94,13 +106,18 @@ export default function Chat() {
           <h1>Bate-papo</h1>
           <p>Converse e acompanhe seus atendimentos.</p>
         </div>
+
         <div className="chat-status-geral">
           <span className="chat-status-ponto" />
           Atendimento
         </div>
       </div>
 
-      <section className="chat-painel">
+      <section
+        className={`chat-painel ${
+          mobileConversaAberta ? "mobile-conversa-aberta" : ""
+        }`}
+      >
         <aside className="chat-lista">
           <div className="chat-lista-topo">
             <h2>Conversas</h2>
@@ -124,7 +141,7 @@ export default function Chat() {
                 className={`chat-conversa-item ${
                   conversaAtiva === item.id ? "selecionada" : ""
                 }`}
-                onClick={() => setConversaAtiva(item.id)}
+                onClick={() => abrirConversa(item.id)}
               >
                 <div className="chat-avatar">{item.avatar}</div>
 
@@ -133,8 +150,10 @@ export default function Chat() {
                     <strong>{item.nome}</strong>
                     <span>{item.horario}</span>
                   </div>
+
                   <div className="chat-conversa-linha">
                     <p>{item.mensagem}</p>
+
                     {item.naoLidas > 0 && (
                       <span className="chat-nao-lidas">
                         {item.naoLidas}
@@ -146,7 +165,9 @@ export default function Chat() {
             ))}
 
             {filtradas.length === 0 && (
-              <p className="chat-vazio">Nenhuma conversa encontrada.</p>
+              <p className="chat-vazio">
+                Nenhuma conversa encontrada.
+              </p>
             )}
           </div>
         </aside>
@@ -155,7 +176,25 @@ export default function Chat() {
           {conversa ? (
             <>
               <header className="chat-conteudo-topo">
+                <button
+                  type="button"
+                  className="chat-voltar"
+                  onClick={voltarParaConversas}
+                  aria-label="Voltar para conversas"
+                >
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M15 18L9 12L15 6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+
                 <div className="chat-avatar">{conversa.avatar}</div>
+
                 <div>
                   <strong>{conversa.nome}</strong>
                   <span>Conversa privada</span>
@@ -169,7 +208,9 @@ export default function Chat() {
                   <div
                     key={item.id}
                     className={`chat-mensagem ${
-                      item.enviada ? "mensagem-enviada" : "mensagem-recebida"
+                      item.enviada
+                        ? "mensagem-enviada"
+                        : "mensagem-recebida"
                     }`}
                   >
                     <div className="chat-balao">
@@ -187,6 +228,7 @@ export default function Chat() {
                   value={mensagem}
                   onChange={(e) => setMensagem(e.target.value)}
                 />
+
                 <button type="submit" disabled={!mensagem.trim()}>
                   <svg viewBox="0 0 24 24" fill="none">
                     <path
