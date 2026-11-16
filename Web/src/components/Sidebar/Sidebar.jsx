@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import logoCidalink from "../../assets/LogoCida.svg";
@@ -144,51 +145,94 @@ const ITENS_MENU = [
   { id: "perfil", rotulo: "Meu Perfil", rota: "/app/perfil" },
 ];
 
+
 export default function Sidebar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  
+  const [menuAberto, setMenuAberto] = useState(false);
+
   const itens =
-  user?.tipo === "admin"
-    ? ITENS_MENU.filter((item) => item.id !== "criar")
-    : ITENS_MENU.filter((item) => item.id !== "painel");
+    user?.tipo === "admin"
+      ? ITENS_MENU.filter((item) => item.id !== "criar")
+      : ITENS_MENU.filter((item) => item.id !== "painel");
 
   function handleSair() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  window.location.assign("/");
-}
-  return (
-    <aside className="sidebar">
-      <NavLink to="/app" end className="sidebar-logo">
-        <img src={logoCidalink} alt="CidaLink" className="logo-claro" />
-        <img src={logoCidalinkEscuro} alt="CidaLink" className="logo-escuro" />
-      </NavLink>
+    logout();
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/");
+  }
 
-      <nav className="sidebar-nav">
-        {itens.map((item) => (
-          <NavLink
-            key={item.id}
-            to={item.rota}
-            end={item.rota === "/app"}
-            className={({ isActive }) =>
-              `sidebar-item ${isActive ? "sidebar-item-ativo" : ""}`
-            }
+  function fecharMenu() {
+    setMenuAberto(false);
+  }
+
+  return (
+    <>
+      
+      <button
+        type="button"
+        className="menu-hamburguer"
+        onClick={() => setMenuAberto(!menuAberto)}
+        aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
+        aria-expanded={menuAberto}
+      >
+        {menuAberto ? "✕" : "☰"}
+      </button>
+
+      
+      {menuAberto && (
+        <div
+          className="sidebar-overlay"
+          onClick={fecharMenu}
+        />
+      )}
+
+      <aside className={`sidebar ${menuAberto ? "sidebar-aberta" : ""}`}>
+        <NavLink
+          to="/app"
+          end
+          className="sidebar-logo"
+          onClick={fecharMenu}
+        >
+          <img src={logoCidalink} alt="CidaLink" className="logo-claro" />
+          <img
+            src={logoCidalinkEscuro}
+            alt="CidaLink"
+            className="logo-escuro"
+          />
+        </NavLink>
+
+        <nav className="sidebar-nav">
+          {itens.map((item) => (
+            <NavLink
+              key={item.id}
+              to={item.rota}
+              end={item.rota === "/app"}
+              onClick={fecharMenu}
+              className={({ isActive }) =>
+                `sidebar-item ${isActive ? "sidebar-item-ativo" : ""}`
+              }
+            >
+              <span className="sidebar-item-conteudo">
+                {ICONES[item.id]}
+                <span>{item.rotulo}</span>
+              </span>
+            </NavLink>
+          ))}
+
+          <button
+            type="button"
+            className="sidebar-item"
+            onClick={handleSair}
           >
             <span className="sidebar-item-conteudo">
-              {ICONES[item.id]}
-              <span>{item.rotulo}</span>
+              {ICONES.sair}
+              <span>Sair</span>
             </span>
-          </NavLink>
-        ))}
-
-        <button type="button" className="sidebar-item" onClick={handleSair}>
-          <span className="sidebar-item-conteudo">
-            {ICONES.sair}
-            <span>Sair</span>
-          </span>
-        </button>
-      </nav>
-    </aside>
+          </button>
+        </nav>
+      </aside>
+    </>
   );
 }
