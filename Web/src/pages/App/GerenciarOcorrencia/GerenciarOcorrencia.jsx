@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../services/api";
@@ -35,8 +34,6 @@ export default function GerenciarOcorrencia() {
       try {
         setCarregando(true);
         setErro("");
-
-        // Utiliza a rota de listagem que o Feed já utiliza.
         const resposta = await api.get("/postagens");
         const postagens = resposta.data?.data?.postagens;
 
@@ -87,14 +84,18 @@ async function salvarAlteracoes(event) {
     setSalvando(true);
     setErro("");
     setSucesso("");
-
-    // Endpoint correto, conforme a rota cadastrada no backend.
-    await api.put(`/postagens/${id}/status`, { status });
-
-    setOcorrencia((anterior) => ({
-      ...anterior,
+    await api.put(`/postagens/${id}/status`, {
       status,
-    }));
+      respostaAdmin: observacao,
+    });
+
+   setOcorrencia((anterior) => ({
+  ...anterior,
+  status,
+  respostaAdmin: observacao,
+  }));
+
+setObservacao("");
 
     setSucesso("Status da ocorrência atualizado com sucesso!");
   } catch (error) {
@@ -233,19 +234,23 @@ async function salvarAlteracoes(event) {
           </select>
 
           <label htmlFor="observacao-ocorrencia">
-            Observação administrativa
+            Resposta para o cidadão
           </label>
+
           <textarea
             id="observacao-ocorrencia"
             rows="4"
+            maxLength={1000}
             value={observacao}
-            onChange={(event) => setObservacao(event.target.value)}
-            placeholder="Anote informações internas sobre o atendimento..."
+            onChange={(event) => {
+              setObservacao(event.target.value);
+              setSucesso("");
+            }}
+            placeholder="Escreva uma resposta para o cidadão..."
           />
 
           <p className="gerenciar-nota">
-            A observação ainda não é enviada ao banco. Para salvá-la, precisamos
-            integrar o campo a uma rota e coluna existentes no seu backend.
+            Essa mensagem será enviada ao cidadão como uma notificação.
           </p>
 
           {erro && <div className="gerenciar-mensagem erro">{erro}</div>}
@@ -265,7 +270,7 @@ async function salvarAlteracoes(event) {
             <button
               type="submit"
               className="gerenciar-salvar"
-              disabled={salvando || status === ocorrencia.status}
+              disabled={ salvando || (status === ocorrencia.status && !observacao.trim())}
             >
               {salvando ? "Salvando..." : "Salvar alterações"}
             </button>
